@@ -1,0 +1,62 @@
+{
+  "goleador" : [ {
+    "equipo" : "Italy",
+    "nombre" : "Federico Chiesa",
+    "minuto" : 59,
+    "segundo" : 21
+  }, {
+    "equipo" : "Spain",
+    "nombre" : "Álvaro Borja Morata Martín",
+    "minuto" : 79,
+    "segundo" : 38
+  }, {
+    "equipo" : "Italy",
+    "nombre" : "Andrea Belotti",
+    "minuto" : 121,
+    "segundo" : 41
+  }, {
+    "equipo" : "Spain",
+    "nombre" : "Gerard Moreno Balaguero",
+    "minuto" : 122,
+    "segundo" : 23
+  }, {
+    "equipo" : "Italy",
+    "nombre" : "Leonardo Bonucci",
+    "minuto" : 123,
+    "segundo" : 6
+  }, {
+    "equipo" : "Spain",
+    "nombre" : "Thiago Alcântara do Nascimento",
+    "minuto" : 123,
+    "segundo" : 43
+  }, {
+    "equipo" : "Italy",
+    "nombre" : "Federico Bernardeschi",
+    "minuto" : 124,
+    "segundo" : 24
+  }, {
+    "equipo" : "Italy",
+    "nombre" : "Jorge Luiz Frello Filho",
+    "minuto" : 126,
+    "segundo" : 0
+  } ],
+  "referencia" : [ ],
+  "portero_jugador" : {
+    "pases" : 0
+  },
+  "luchador" : [ ],
+  "porcentajesPosesion" : {
+    "primer_tiempo" : {
+      "espana" : 0,
+      "italia" : 0
+    },
+    "segundo_tiempo" : {
+      "espana" : 0,
+      "italia" : 0
+    },
+    "partido_completo" : {
+      "espana" : 0,
+      "italia" : 0
+    }
+  }
+}
