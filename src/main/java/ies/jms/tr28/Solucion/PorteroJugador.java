@@ -35,4 +35,14 @@ public class PorteroJugador
     {
         this.pases = pases;
     }
+
+    @Override
+    public String toString()
+    {
+        return "PorteroJugador{" +
+                "equipo='" + equipo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", pases=" + pases +
+                '}';
+    }
 }

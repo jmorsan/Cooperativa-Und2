@@ -22,12 +22,14 @@ public class JsonParser
         try
         {
 
-            //Convert a JSON string to a Coche List (Option 1)
+            //Convert a JSON string to a Event
             List<Event> eventList = mapper.readValue(Paths.get("src/main/resources/3795220.json").toFile(), new TypeReference<List<Event>>() {});
             
 
             EventFilter eventFilter = new EventFilter(eventList);
-            eventFilter.filter();
+            //eventFilter.filterGoleador();
+            //eventFilter.filterReferencia();
+            eventFilter.filterPorteroJugador();
         }
         catch (IOException ioException)
         {

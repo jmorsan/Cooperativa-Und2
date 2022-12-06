@@ -33,29 +33,18 @@ public class Event
     private Tactics tactics;
     private Carry carry;
     private Pass pass;
-
     private BallReceipt ball_receipt;
-
     private Interception interception;
-
     private boolean counterpress;
-
     private FoulWon foul_won;
     private Dribble dribble;
-
     private Duel duel;
-
     private Clearance clearance;
-
     private Shot shot;
-
     private Goalkeeper goalkeeper;
-
     private FoulCommitted foul_committed;
-
     private Block block;
     private BallRecovery ball_recovery;
-
     private Substitution substitution;
     private InjuryStoppage injury_stoppage;
 

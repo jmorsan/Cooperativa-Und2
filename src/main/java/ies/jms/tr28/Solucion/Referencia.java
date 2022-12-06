@@ -35,4 +35,14 @@ public class Referencia
     {
         this.pases = pases;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Referencia{" +
+                "equipo='" + equipo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", pases=" + pases +
+                '}';
+    }
 }
