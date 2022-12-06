@@ -34,7 +34,7 @@ public class JsonParser
         catch (IOException ioException)
         {
             ioException.printStackTrace();
-            LOGGER.error("Error al parsear json");
+            LOGGER.error("Error al parsear json ");
         }
     }
 }
