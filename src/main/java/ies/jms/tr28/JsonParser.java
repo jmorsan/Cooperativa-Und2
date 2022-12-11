@@ -27,9 +27,11 @@ public class JsonParser
             
 
             EventFilter eventFilter = new EventFilter(eventList);
-            //eventFilter.filterGoleador();
-            //eventFilter.filterReferencia();
+            eventFilter.filterGoleador();
+            eventFilter.filterReferencia();
             eventFilter.filterPorteroJugador();
+            eventFilter.filterLuchador();
+            eventFilter.filterPosesion();
         }
         catch (IOException ioException)
         {

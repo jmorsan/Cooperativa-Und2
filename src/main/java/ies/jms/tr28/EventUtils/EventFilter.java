@@ -2,10 +2,7 @@ package ies.jms.tr28.EventUtils;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import ies.jms.tr28.Solucion.Goleador;
-import ies.jms.tr28.Solucion.PorteroJugador;
-import ies.jms.tr28.Solucion.Referencia;
-import ies.jms.tr28.Solucion.Resultado;
+import ies.jms.tr28.Solucion.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,13 +15,13 @@ public class EventFilter
     private List<Event>listaEventos;
 
     private Resultado resultado;
-    private Referencia referencia;
+
 
     public EventFilter(List<Event> listaEventos)
     {
         this.listaEventos = listaEventos;
         this.resultado = new Resultado();
-        this.referencia = new Referencia();
+
     }
 
     public void filterGoleador()
@@ -44,8 +41,7 @@ public class EventFilter
                 }
             }
         }
-        //System.out.println(resultado.toString());
-        //crearJson(resultado);
+
     }
 
     public void filterReferencia()
@@ -74,7 +70,7 @@ public class EventFilter
                 {
                     if (listaPasesItalia.containsKey(this.listaEventos.get(i).getPass().getRecipient().getName()))
                     {
-                        listaPasesItalia.put(this.listaEventos.get(i).getPass().getRecipient().getName(), listaPasesItalia.get(this.listaEventos.get(i).getPass().getRecipient().getName()) + 1);
+                        listaPasesItalia.put(this.listaEventos.get(i).getPass().getRecipient().getName(), listaPasesItalia.get(this.listaEventos.get(i).getPass().getRecipient().getName()) +1);
                     } else
                     {
                         listaPasesItalia.put(this.listaEventos.get(i).getPass().getRecipient().getName(), 1);
@@ -120,7 +116,7 @@ public class EventFilter
 
         this.resultado.getReferencia().add(referenciaItaly);
         //System.out.println(resultado.toString());
-        //crearJson(resultado);
+
     }
 
     public void filterPorteroJugador()
@@ -169,9 +165,140 @@ public class EventFilter
         }
 
         this.resultado.setPortero_jugador(porteroJugador);
-        System.out.println(resultado.toString());
-        //crearJson(resultado);
 
+
+    }
+
+    public void filterLuchador()
+    {
+        Map<String,Integer> listaDuelosSpain = new HashMap<>();
+        Map<String,Integer> listaDuelosItaly = new HashMap<>();
+
+        for (Event event : listaEventos)
+        {
+            if (event.getDuel() != null)
+            {
+                if (event.getDuel().getOutcome() != null)
+                {
+                    if (event.getTeam().getName().equals("Spain") && event.getDuel().getOutcome().getName().equals("Won"))
+                    {
+
+                        if (listaDuelosSpain.containsKey(event.getPlayer().getName()))
+                        {
+                            listaDuelosSpain.put(event.getPlayer().getName(), listaDuelosSpain.get(event.getPlayer().getName()) +1);
+                        } else
+                        {
+                            listaDuelosSpain.put(event.getPlayer().getName(), 1);
+                        }
+                    }
+                    else if (event.getTeam().getName().equals("Italy") && event.getDuel().getOutcome().getName().equals("Won"))
+                    {
+                        if (listaDuelosItaly.containsKey(event.getPlayer().getName()))
+                        {
+                            listaDuelosItaly.put(event.getPlayer().getName(), listaDuelosItaly.get(event.getPlayer().getName()) +1);
+                        } else
+                        {
+                            listaDuelosItaly.put(event.getPlayer().getName(), 1);
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+        int mayorDuelosGanadosSpain = 0;
+        String jugadorSpainDuelos ="";
+        for(Map.Entry<String,Integer> recipient : listaDuelosSpain.entrySet())
+        {
+
+            if(recipient.getValue() > mayorDuelosGanadosSpain)
+            {
+                mayorDuelosGanadosSpain = recipient.getValue();
+                jugadorSpainDuelos=recipient.getKey();
+            }
+        }
+
+
+        Luchador luchadorSpain = new Luchador();
+        luchadorSpain.setEquipo("Spain");
+        luchadorSpain.setNombre(jugadorSpainDuelos);
+        luchadorSpain.setDuelos_ganados(mayorDuelosGanadosSpain);
+
+        this.resultado.getLuchador().add(luchadorSpain);
+
+        int mayorDuelosGanadosItaly = 0;
+        String jugadorItalyDuelos ="";
+        for(Map.Entry<String,Integer> recipient : listaDuelosItaly.entrySet())
+        {
+            if(recipient.getValue() > mayorDuelosGanadosItaly)
+            {
+                mayorDuelosGanadosItaly = recipient.getValue();
+                jugadorItalyDuelos = recipient.getKey();
+            }
+        }
+
+        Luchador luchadorItaly = new Luchador();
+        luchadorItaly.setEquipo("Italy");
+        luchadorItaly.setNombre(jugadorItalyDuelos);
+        luchadorItaly.setDuelos_ganados(mayorDuelosGanadosItaly);
+
+        this.resultado.getLuchador().add(luchadorItaly);
+
+    }
+
+    public void filterPosesion()
+    {
+        double primerTiempoSpain = 0.0;
+        double segundoTiempoSpain = 0.0;
+        double primerTiempoItaly = 0.0;
+        double segundoTiempoItaly = 0.0;
+        for(Event event:listaEventos)
+        {
+            if(event.getTeam().getName().equals("Spain"))
+            {
+                if(event.getPeriod() == 1)
+                {
+                    primerTiempoSpain += event.getDuration();
+
+                }
+                else if(event.getPeriod() == 2)
+                {
+                    segundoTiempoSpain += event.getDuration();
+                }
+            }
+            else
+            {
+                if(event.getPeriod() == 1)
+                {
+                    primerTiempoItaly += event.getDuration();
+
+                }
+                else if(event.getPeriod() == 2)
+                {
+                    segundoTiempoItaly += event.getDuration();
+                }
+            }
+            PrimerTiempo primerTiempo = new PrimerTiempo();
+            primerTiempo.setEspana(100 / ((primerTiempoSpain + primerTiempoItaly) / primerTiempoSpain));
+            primerTiempo.setItalia(100 / ((primerTiempoSpain + primerTiempoItaly) / primerTiempoItaly));
+
+            this.resultado.getPorcentajesPosesion().setPrimer_tiempo(primerTiempo);
+
+            SegundoTiempo segundoTiempo = new SegundoTiempo();
+            segundoTiempo.setEspana(100 / ((segundoTiempoSpain + segundoTiempoItaly) / segundoTiempoSpain));
+            segundoTiempo.setItalia(100 / ((segundoTiempoSpain + segundoTiempoItaly) / segundoTiempoItaly));
+
+            this.resultado.getPorcentajesPosesion().setSegundo_tiempo(segundoTiempo);
+
+            PartidoCompleto partidoCompleto = new PartidoCompleto();
+            partidoCompleto.setEspana((primerTiempo.getEspana()+segundoTiempo.getEspana())/2);
+            partidoCompleto.setItalia((primerTiempo.getItalia()+segundoTiempo.getItalia())/2);
+
+            this.resultado.getPorcentajesPosesion().setPartido_completo(partidoCompleto);
+
+            crearJson(resultado);
+        }
     }
 
 

@@ -2,26 +2,35 @@ package ies.jms.tr28.Solucion;
 
 public class PrimerTiempo
 {
-    private int espana;
-    private int italia;
+    private double espana;
+    private double italia;
 
-    public int getEspana()
+    public double getEspana()
     {
         return espana;
     }
 
-    public void setEspana(int espana)
+    public void setEspana(double espana)
     {
         this.espana = espana;
     }
 
-    public int getItalia()
+    public double getItalia()
     {
         return italia;
     }
 
-    public void setItalia(int italia)
+    public void setItalia(double italia)
     {
         this.italia = italia;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "PrimerTiempo{" +
+                "espana=" + espana +
+                ", italia=" + italia +
+                '}';
     }
 }

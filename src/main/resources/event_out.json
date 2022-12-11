@@ -40,23 +40,41 @@
     "minuto" : 126,
     "segundo" : 0
   } ],
-  "referencia" : [ ],
+  "referencia" : [ {
+    "equipo" : "España",
+    "nombre" : "Aymeric Laporte",
+    "pases" : 126
+  }, {
+    "equipo" : "Italia",
+    "nombre" : "Giorgio Chiellini",
+    "pases" : 43
+  } ],
   "portero_jugador" : {
-    "pases" : 0
+    "equipo" : "España",
+    "nombre" : "Unai Simón Mendibil",
+    "pases" : 58
   },
-  "luchador" : [ ],
+  "luchador" : [ {
+    "equipo" : "Spain",
+    "nombre" : "Aymeric Laporte",
+    "duelos_ganados" : 1
+  }, {
+    "equipo" : "Italy",
+    "nombre" : "Marco Verratti",
+    "duelos_ganados" : 3
+  } ],
   "porcentajesPosesion" : {
     "primer_tiempo" : {
-      "espana" : 0,
-      "italia" : 0
+      "espana" : 64.21736893321221,
+      "italia" : 35.782631066787786
     },
     "segundo_tiempo" : {
-      "espana" : 0,
-      "italia" : 0
+      "espana" : 70.06558395217604,
+      "italia" : 29.934416047823948
     },
     "partido_completo" : {
-      "espana" : 0,
-      "italia" : 0
+      "espana" : 67.14147644269413,
+      "italia" : 32.858523557305865
     }
   }
 }
